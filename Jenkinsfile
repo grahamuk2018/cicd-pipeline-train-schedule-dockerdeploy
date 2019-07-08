@@ -1,5 +1,5 @@
 pipeline {
-  agent None
+  agent none
   stages {
     stage('Build Packer Container') {
       agent {
@@ -11,26 +11,26 @@ pipeline {
         }
       }
     }
-    stage('Push Docker Image') {
+    stage("Push Docker Image") {
       steps {
         agent {
           any
         }
-        script {
-          docker.withRegistry('195027210696.dkr.ecr.eu-west-1.amazonaws.com/grahamseanking/packer') {
-            packer.push("latest")
-          }
-        }
       }
     }
-    stage('Create Base AMI') {
+    script {
+      docker.withRegistry("195027210696.dkr.ecr.eu-west-1.amazonaws.com/grahamseanking/packer") {
+        packer.push("latest")
+      }
+    }
+    stage("Create Base AMI") {
       agent {
         docker {
           image grahamseanking/packer
         }
       }
       steps {
-        sh 'packer build packer.json'
+        sh "packer build paker.json"
       }
     }
   }
