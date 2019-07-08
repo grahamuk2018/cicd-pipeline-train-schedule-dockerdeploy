@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent None
   stages {
     stage('Build Packer Container') {
       agent {
