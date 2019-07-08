@@ -2,7 +2,7 @@ pipeline {
   agent none
   stages {
     stage('Build Packer Container') {
-      agent { 
+      agent {
         any
       }
       steps {
